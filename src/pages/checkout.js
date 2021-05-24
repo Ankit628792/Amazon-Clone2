@@ -19,12 +19,15 @@ function Checkout() {
 
     const createCheckoutSession = async () => {
         try {  
-            const stripe = await loadStripe(process.env.stripe_public_key);
-            const checkoutSession = await axios.post('/api/create-checkout-session',
+            const stripe = await loadStripe("pk_test_51Iu55mSHt26EdXYYzJoih3FXbv9yqVHMg4bbkuXqIeLHJqwbwGqsUmMvdZxHQPrIQIZ4EOdnSAp3PZ5Avi2XgHpJ00vU3QmFe4");
+            try{const checkoutSession = await axios.post('/api/create-checkout-session',
                 {
                     items: items,
                     email: session.user.email
                 })
+            }catch(error) {
+                console.log('error is here');
+            }
     
             const result = await stripe.redirectToCheckout({
                 sessionId: checkoutSession.data.id
@@ -35,6 +38,7 @@ function Checkout() {
             }
         } catch (error) {
             console.log(error)
+            console.log('error 2 here');
         }
     }
 
