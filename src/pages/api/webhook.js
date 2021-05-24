@@ -8,8 +8,7 @@ const app = !admin.apps.length ? admin.initializeApp({
 }) : admin.app();
 
 //connection with stripe
-console.log('webhook 1 secret key', process.env.STRIPE_SECRET_KEY)
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+const stripe = require('stripe')(sk_test_51Iu55mSHt26EdXYYscl0zWMSHJDZ9Oqv5sM64qZMH01XglNTbw12ChPG85n8LIt0CCx9bazm0XOCzSiFG986CrDq00n2YQ8710)
 
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 console.log('checkoutsession1 secret sign', process.env.STRIPE_SIGNING_SECRET)
