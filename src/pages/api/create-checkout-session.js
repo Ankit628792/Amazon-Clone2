@@ -1,4 +1,4 @@
-const stripe = require('stripe')(sk_test_51Iu55mSHt26EdXYYscl0zWMSHJDZ9Oqv5sM64qZMH01XglNTbw12ChPG85n8LIt0CCx9bazm0XOCzSiFG986CrDq00n2YQ8710);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export default async (req, res) => {
     const { items, email } = req.body;
@@ -25,8 +25,8 @@ export default async (req, res) => {
         },
         line_items: transformedItems,
         mode: 'payment',
-        success_url: `https://amazon-clone2-3q5ouixdt-final.vercel.app/success`,
-        cancel_url: `https://amazon-clone2-3q5ouixdt-final.vercel.app/checkout`,
+        success_url: `${process.env.HOST}/success`,
+        cancel_url: `${process.env.HOST}/checkout`,
         metadata: {
             email: email,
             images: JSON.stringify(items.map((item) => item.product.image))
@@ -37,5 +37,4 @@ export default async (req, res) => {
 }
 
 // stripe listen --forward-to localhost:3000/api/webhook
-//  assure-vouch-endear-love
-//  whsec_cANFOk7e7zN76l22HazcMK17bcVYcyrz
+
