@@ -7,7 +7,7 @@ import Currency from 'react-currency-formatter'
 import { useSession } from 'next-auth/client'
 import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
-const stripePromise = loadStripe(process.env.stripe_public_key)
+//const stripePromise = await loadStripe(process.env.stripe_public_key)
 
 function Checkout() {
     const items = useSelector(selectItems)
@@ -22,13 +22,21 @@ function Checkout() {
     const createCheckoutSession = async () => {
 
         try {  
+<<<<<<< HEAD
             const stripe = await stripePromise;
 
             const checkoutSession = await axios.post('/api/create-checkout-session',
+=======
+            const stripe = await loadStripe("pk_test_51Iu55mSHt26EdXYYzJoih3FXbv9yqVHMg4bbkuXqIeLHJqwbwGqsUmMvdZxHQPrIQIZ4EOdnSAp3PZ5Avi2XgHpJ00vU3QmFe4");
+            try{const checkoutSession = await axios.post('/api/create-checkout-session',
+>>>>>>> d67df13ee5f5b92606ae0e15ac0ddc037c86ad90
                 {
                     items: items,
                     email: session.user.email
                 })
+            }catch(error) {
+                console.log('error is here');
+            }
     
             const result = await stripe.redirectToCheckout({
                 sessionId: checkoutSession.data.id
@@ -39,6 +47,7 @@ function Checkout() {
             }
         } catch (error) {
             console.log(error)
+            console.log('error 2 here');
         }
     }
 
