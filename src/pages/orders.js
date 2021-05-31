@@ -9,7 +9,8 @@ function Orders({ orders }) {
     const [session] = useSession()
 
     return (
-        <div className="">
+        <div>
+
             <Header />
 
             <main className="max-w-screen-lg mx-auto p-10">

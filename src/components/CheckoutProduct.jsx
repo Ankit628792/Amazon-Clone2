@@ -6,7 +6,9 @@ import { StarIcon } from '@heroicons/react/solid'
 
 
 const CheckoutProduct = ({ id, title, rating, price, description, category, image, hasPrime }) => {
+
     const dispatch = useDispatch();
+    
     const addItemToBasket = () => {
         const product = {
             id, title, rating, price, description, category, image, hasPrime

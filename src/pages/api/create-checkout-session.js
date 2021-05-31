@@ -1,5 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-console.log('checkoutsession1 secret key', process.env.STRIPE_SECRET_KEY)
+
 export default async (req, res) => {
     const { items, email } = req.body;
     const transformedItems = items.map((item) => ({
@@ -15,8 +15,6 @@ export default async (req, res) => {
             }
         }
     }))
-
-    console.log('checkoutsession 2 host key', process.env.HOST)
 
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
@@ -38,5 +36,3 @@ export default async (req, res) => {
 }
 
 // stripe listen --forward-to localhost:3000/api/webhook
-//  assure-vouch-endear-love
-//  whsec_cANFOk7e7zN76l22HazcMK17bcVYcyrz

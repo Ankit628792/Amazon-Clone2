@@ -14,12 +14,16 @@ function Checkout() {
     const total = useSelector(selectTotal) * 10;
     const [session] = useSession();
 
+    console.log(session);
+    
     const discount = 0;
     const delivery = 149
 
     const createCheckoutSession = async () => {
+
         try {  
             const stripe = await stripePromise;
+
             const checkoutSession = await axios.post('/api/create-checkout-session',
                 {
                     items: items,
@@ -29,7 +33,7 @@ function Checkout() {
             const result = await stripe.redirectToCheckout({
                 sessionId: checkoutSession.data.id
             })
-    
+
             if (result.error) {
                 alert(result.error.message);
             }
@@ -40,6 +44,7 @@ function Checkout() {
 
     return (
         <div className="bg-gray-100">
+            
             <Header />
 
             <main className="lg:flex max-w-screen-xl mx-auto">

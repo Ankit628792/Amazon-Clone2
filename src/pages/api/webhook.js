@@ -8,14 +8,9 @@ const app = !admin.apps.length ? admin.initializeApp({
 }) : admin.app();
 
 //connection with stripe
-console.log('webhook 1 secret key', process.env.STRIPE_SECRET_KEY)
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
-console.log('checkoutsession1 secret sign', process.env.STRIPE_SIGNING_SECRET)
-console.log(stripe)
-console.log(endpointSecret)
-
 
 const fulfillOrder = async (session) => {
     return app.firestore().collection('user').doc(session.metadata.email).collection('orders').doc(session.id).set({
@@ -25,7 +20,7 @@ const fulfillOrder = async (session) => {
         timestamp: admin.firestore.FieldValue.serverTimestamp()
     }).then(() => {
         console.log(" ")
-        // console.log(`Success: order ${session.id} has added to db`)
+        console.log(`Success: order ${session.id} has added to db`)
     }).catch((error) => console.log(error))
 }
 

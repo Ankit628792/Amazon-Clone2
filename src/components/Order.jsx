@@ -1,8 +1,8 @@
-import React from 'react'
 import moment from 'moment'
 import Currency from 'react-currency-formatter'
 
 function Order({ id, amount, amountShipping, items, timestamp, images }) {
+    
     return (
         <div className="relative border rounded-md shadow-md">
             <div className="flex items-center space-x-10 px-5 py-7 bg-gray-100 text-sm text-gray-600">
@@ -24,8 +24,8 @@ function Order({ id, amount, amountShipping, items, timestamp, images }) {
 
             <div className="p-5 sm:p-10">
                 <div className="flex space-x-6 overflow-x-auto order_overflow">
-                    {images.map(image => (
-                        <img src={image} className="h-20 object-contain mx-2 sm:h-32" alt="" />
+                    {images.map((image, index) => (
+                        <img key={index} src={image} className="h-20 object-contain mx-2 sm:h-32" alt="" />
                     ))}
                 </div>
             </div>
