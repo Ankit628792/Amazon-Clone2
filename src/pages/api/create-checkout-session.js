@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-=======
-
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
->>>>>>> d67df13ee5f5b92606ae0e15ac0ddc037c86ad90
 
 export default async (req, res) => {
  
@@ -19,16 +14,8 @@ export default async (req, res) => {
             name: item.product.title,
             images: [item.product.image]
         }
-<<<<<<< HEAD
-    }))
+    }}))
 
-=======
-    }
-}))
-
-  try {
-    
->>>>>>> d67df13ee5f5b92606ae0e15ac0ddc037c86ad90
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         shipping_rates:  ["shr_1Iu5fASHt26EdXYY99cHlrM6"],
@@ -48,14 +35,6 @@ export default async (req, res) => {
     
     return res.status(200).json({ id: session.id });
 
-<<<<<<< HEAD
+    }
+
 // stripe listen --forward-to localhost:3000/api/webhook
-=======
-  } catch (e) {
-    console.log(e);
-    return res.status(400).json({
-      error: { message: e.message },
-    });
-  }
-};
->>>>>>> d67df13ee5f5b92606ae0e15ac0ddc037c86ad90

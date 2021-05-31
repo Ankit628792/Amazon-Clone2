@@ -9,7 +9,7 @@ export const basketSlice = createSlice({
   initialState,
   reducers: {
     addToBasket: (state, action) => {
-      state.items = [...state.items,action.payload]
+      state.items = [...state.items,action.payload];
     },
     removeFromBasket: (state, action) => {
       const index = state.items.findIndex(
@@ -24,7 +24,6 @@ export const basketSlice = createSlice({
        console.warn(`Can't remove product`)
      }
      state.items = newBasket
-
   }
 }
 });
