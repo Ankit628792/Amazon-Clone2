@@ -28,7 +28,9 @@ try{
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
-      line_items: transformedItems,
+      line_items: [
+    {price: 'price_H5ggYwtDq4fbrJ', quantity: 2},
+  ],
       success_url: `${process.env.HOST}/success`,
       cancel_url: `${process.env.HOST}/checkout`,
     });
