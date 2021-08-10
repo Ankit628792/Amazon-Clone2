@@ -2,6 +2,7 @@
 
 export default async (req, res) => {
  const stripe = await require('stripe')(process.env.STRIPE_SECRET_KEY);
+ console.log(stripe);
  
     const { items, email } = req.body;
 try{
@@ -22,29 +23,45 @@ try{
   console.log(e)
  }
  
- try{
-  const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        shipping_rates:  ["shr_1Iu5fASHt26EdXYY99cHlrM6"],
-        shipping_address_collection: {
-            allowed_countries: ['GB', 'US', 'IN']
-        },
-        line_items: transformedItems,
-        mode: "payment",
-        success_url: `${process.env.HOST}/success`,
-        cancel_url: `${process.env.HOST}/checkout`,
-        customer_email: email,
-        metadata: {
-            email: email,
-            images: JSON.stringify(items.map((item) => item.product.image))
-        },
-      });
+ if (req.method === 'POST') {
+  try {
+    const session = await stripe.checkout.sessions.create({
+      mode: 'payment',
+      payment_method_types: ['card'],
+      line_items: transformedItems,
+      success_url: `${process.env.HOST}/success`,
+      cancel_url: `${process.env.HOST}/checkout`,
+    });
+
+    res.status(200).json(session);
+  } catch (err) {
+    res.status(500).json({ statusCode: 500, message: err.message });
+  }
+}
+ 
+//  try{
+//   const session = await stripe.checkout.sessions.create({
+//         payment_method_types: ["card"],
+//         shipping_rates:  ["shr_1Iu5fASHt26EdXYY99cHlrM6"],
+//         shipping_address_collection: {
+//             allowed_countries: ['GB', 'US', 'IN']
+//         },
+//         line_items: transformedItems,
+//         mode: "payment",
+//         success_url: `${process.env.HOST}/success`,
+//         cancel_url: `${process.env.HOST}/checkout`,
+//         customer_email: email,
+//         metadata: {
+//             email: email,
+//             images: JSON.stringify(items.map((item) => item.product.image))
+//         },
+//       });
   
-  console.log(session);
- }
- catch(e){
-  console.log(e);
- }
+//   console.log(session);
+//  }
+//  catch(e){
+//   console.log(e);
+//  }
     return res.status(200).json({ id: session.id });
 
     }
