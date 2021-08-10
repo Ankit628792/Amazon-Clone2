@@ -18,9 +18,8 @@ function Checkout() {
     const delivery = 149
 
     const createCheckoutSession = async () => {
-
+                const stripe = await stripePromise;
         try {  
-            const stripe = await stripePromise;
 
             const checkoutSession = await axios.post('/api/create-checkout-session',
                 {
@@ -30,6 +29,7 @@ function Checkout() {
             }catch(error) {
                 console.log('error is here');
             }
+        console.log(stripe);
     
             const result = await stripe.redirectToCheckout({
                 sessionId: checkoutSession.data.id
