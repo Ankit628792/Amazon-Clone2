@@ -1,6 +1,8 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 
 export default async (req, res) => {
+ const stripe = await require('stripe')(process.env.STRIPE_SECRET_KEY);
+ console.log(stripe);
  
     const { items, email } = req.body;
 try{
@@ -15,9 +17,10 @@ try{
             images: [item.product.image]
         }
     }}))
+  console.log(transformedItems);
   }
  catch(e){
-  window.alert(e);
+  console.log(e)
  }
  
  try{
@@ -39,7 +42,7 @@ try{
       });
  }
  catch(e){
-  window.alert(e);
+  console.log(e);
  }
     return res.status(200).json({ id: session.id });
 
