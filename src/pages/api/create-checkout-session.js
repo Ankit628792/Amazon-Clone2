@@ -23,12 +23,8 @@ try{
  }
  
  try{
-    const session = await stripe.checkout.sessions.create({
+  const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
-        shipping_rates:  ["shr_1Iu5fASHt26EdXYY99cHlrM6"],
-        shipping_address_collection: {
-            allowed_countries: ['GB', 'US', 'IN']
-        },
         line_items: transformedItems,
         mode: "payment",
         success_url: `${process.env.HOST}/success`,
