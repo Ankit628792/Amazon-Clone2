@@ -3,25 +3,26 @@
 export default async (req, res) => {
  const stripe = await require('stripe')(process.env.STRIPE_SECRET_KEY);
  console.log(stripe);
+  const { email } = req.body;
  
-    const { items, email } = req.body;
-try{
-  const transformedItems = items.map((item) => ({
-    description: item.product.description,
-    quantity: 1,
-    price_data: {
-        currency: 'inr',
-        unit_amount: item.product.price * 1000,
-        product_data: {
-            name: item.product.title,
-            images: [item.product.image]
-        }
-    }}))
-  console.log(transformedItems);
-  }
- catch(e){
-  console.log(e)
- }
+//     const { items, email } = req.body;
+// try{
+//   const transformedItems = items.map((item) => ({
+//     description: item.product.description,
+//     quantity: 1,
+//     price_data: {
+//         currency: 'inr',
+//         unit_amount: item.product.price * 1000,
+//         product_data: {
+//             name: item.product.title,
+//             images: [item.product.image]
+//         }
+//     }}))
+//   console.log(transformedItems);
+//   }
+//  catch(e){
+//   console.log(e)
+//  }
  
  if (req.method === 'POST') {
   try {
