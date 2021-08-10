@@ -17,9 +17,11 @@ function Checkout() {
     const discount = 0;
     const delivery = 149
 
+    window.alert('inside checkout');
     const createCheckoutSession = async () => {
                 const stripe = await stripePromise;
-        console.log(stripe);
+        
+        console.log("stripe ", stripe);
 //         try {  
 
 //             const checkoutSession = await axios.post('/api/create-checkout-session',
