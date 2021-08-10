@@ -2,7 +2,6 @@
 
 export default async (req, res) => {
  const stripe = await require('stripe')(process.env.STRIPE_SECRET_KEY);
- console.log(stripe);
  
     const { items, email } = req.body;
 try{
@@ -40,6 +39,8 @@ try{
             images: JSON.stringify(items.map((item) => item.product.image))
         },
       });
+  
+  console.log(session);
  }
  catch(e){
   console.log(e);
