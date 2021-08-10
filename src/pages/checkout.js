@@ -17,7 +17,7 @@ function Checkout() {
     const discount = 0;
     const delivery = 149
 
-    window.alert('inside checkout');
+    alert('inside checkout');
     const createCheckoutSession = async () => {
                 const stripe = await stripePromise;
         
