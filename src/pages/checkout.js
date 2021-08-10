@@ -26,7 +26,6 @@ function Checkout() {
         const checkoutSession = await axios.post(
             "/api/create-checkout-session",
             {
-                items,
                 email: session.user.email,
             }
         );
