@@ -3,7 +3,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 export default async (req, res) => {
  
     const { items, email } = req.body;
-
+try{
   const transformedItems = items.map((item) => ({
     description: item.product.description,
     quantity: 1,
@@ -15,7 +15,12 @@ export default async (req, res) => {
             images: [item.product.image]
         }
     }}))
-
+  }
+ catch(e){
+  window.alert(e);
+ }
+ 
+ try{
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         shipping_rates:  ["shr_1Iu5fASHt26EdXYY99cHlrM6"],
@@ -32,7 +37,10 @@ export default async (req, res) => {
             images: JSON.stringify(items.map((item) => item.product.image))
         },
       });
-    
+ }
+ catch(e){
+  window.alert(e);
+ }
     return res.status(200).json({ id: session.id });
 
     }
