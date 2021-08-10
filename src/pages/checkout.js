@@ -27,17 +27,17 @@ function Checkout() {
                     items: items,
                     email: session.user.email
                 })
-            }catch(error) {
-                console.log('error is here');
-            }
-        
-    
-            const result = await stripe.redirectToCheckout({
+            
+             const result = await stripe.redirectToCheckout({
                 sessionId: checkoutSession.data.id
             })
 
             if (result.error) {
                 alert(result.error.message);
+            }
+            
+            }catch(error) {
+                console.log('error is here');
             }
       
     }
