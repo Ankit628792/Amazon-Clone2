@@ -10,13 +10,13 @@ try{
     quantity: 1,
     price_data: {
         currency: 'inr',
-        unit_amount: item.product.price * 1000,
+        amount: item.product.price * 1000,
         product_data: {
             name: item.product.title,
             images: [item.product.image]
         }
     }}))
-  console.log(transformedItems);
+
   }
  catch(e){
   console.log(e)
@@ -40,8 +40,7 @@ try{
             images: JSON.stringify(items.map((item) => item.product.image))
         },
       });
-  
-  console.log(session);
+
  }
  catch(e){
   console.log(e);
