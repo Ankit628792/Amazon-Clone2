@@ -7,7 +7,6 @@ import Currency from 'react-currency-formatter'
 import { useSession } from 'next-auth/client'
 import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
-const stripePromise = loadStripe(process.env.stripe_public_key)
 
 function Checkout() {
     const items = useSelector(selectItems)
@@ -19,7 +18,7 @@ function Checkout() {
 
     console.log('inside checkout');
     const createCheckoutSession = async () => {
-                const stripe = await stripePromise;
+                const stripe = await loadStripe(process.env.stripe_public_key);
         try {  
 
            // Call the backend to create a checkout session...
@@ -28,6 +27,7 @@ function Checkout() {
             {
                 items: items,
                 email: session.user.email,
+                amount: total
             }
         );
             

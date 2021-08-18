@@ -3,13 +3,12 @@
 export default async (req, res) => {
  const stripe = await require('stripe')(process.env.STRIPE_SECRET_KEY);
  
-    const { items, email } = req.body;
+    const { items, email , amount} = req.body;
 try{
   const transformedItems = items.map((item) => ({
     description: item.product.description,
     quantity: 1,
     price_data: {
-        unit_amount: item.product.price * 1000,
         product_data: {
             name: item.product.title,
             images: [item.product.image]
@@ -29,8 +28,7 @@ try{
         shipping_address_collection: {
             allowed_countries: ['GB', 'US', 'IN']
         },
-        line_items: transformedItems,
-        currency: 'inr',
+        line_items: [...transformedItems, currency: 'inr',amount],
         mode: "payment",
         success_url: `${process.env.HOST}/success`,
         cancel_url: `${process.env.HOST}/checkout`,
