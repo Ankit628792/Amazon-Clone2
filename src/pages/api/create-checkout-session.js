@@ -15,7 +15,7 @@ try{
         }
     }}))
 
-    const line_items_data = [...transformedItems, currency:'inr',amount];
+    const line_items_data = [{...transformedItems, currency:'inr',amount}];
 
   }
  catch(e){
