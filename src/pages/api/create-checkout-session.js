@@ -28,7 +28,7 @@ try{
         shipping_address_collection: {
             allowed_countries: ['GB', 'US', 'IN']
         },
-        line_items: [...transformedItems, currency: 'inr',amount],
+        line_items: [...transformedItems, currency:'inr',amount],
         mode: "payment",
         success_url: `${process.env.HOST}/success`,
         cancel_url: `${process.env.HOST}/checkout`,
