@@ -8,9 +8,9 @@ const app = !admin.apps.length ? admin.initializeApp({
 }) : admin.app();
 
 //connection with stripe
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+const stripe = require('stripe')(process.env.stripe_secret_key)
 
-const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
+const endpointSecret = process.env.stripe_signing_secret;
 
 const fulfillOrder = async (session) => {
     return app.firestore().collection('user').doc(session.metadata.email).collection('orders').doc(session.id).set({
