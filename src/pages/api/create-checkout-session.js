@@ -9,8 +9,7 @@ try{
     description: item.product.description,
     quantity: 1,
     price_data: {
-        currency: 'inr',
-        amount: item.product.price * 1000,
+        unit_amount: item.product.price * 1000,
         product_data: {
             name: item.product.title,
             images: [item.product.image]
@@ -31,6 +30,7 @@ try{
             allowed_countries: ['GB', 'US', 'IN']
         },
         line_items: transformedItems,
+        currency: 'inr',
         mode: "payment",
         success_url: `${process.env.HOST}/success`,
         cancel_url: `${process.env.HOST}/checkout`,
