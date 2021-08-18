@@ -12,42 +12,41 @@ function Checkout() {
     const items = useSelector(selectItems)
     const total = useSelector(selectTotal) * 10;
     const [session] = useSession();
-    
+
     const discount = 0;
     const delivery = 149
 
     console.log('inside checkout');
     const createCheckoutSession = async () => {
-                const stripe = await loadStripe(process.env.stripe_public_key);
-        try {  
+        const stripe = await loadStripe(process.env.stripe_public_key);
+        try {
 
-           // Call the backend to create a checkout session...
-        const checkoutSession = await axios.post(
-            "/api/create-checkout-session",
-            {
-                items: items,
-                email: session.user.email,
-                amount: total
-            }
-        );
-            
-             const result = await stripe.redirectToCheckout({
+            // Call the backend to create a checkout session...
+            const checkoutSession = await axios.post(
+                "/api/create-checkout-session",
+                {
+                    items: items,
+                    email: session.user.email
+                }
+            );
+
+            const result = await stripe.redirectToCheckout({
                 sessionId: checkoutSession.data.id
             })
 
             if (result.error) {
                 alert(result.error.message);
             }
-            
-            }catch(error) {
-                console.log('error is here');
-            }
-      
+
+        } catch (error) {
+            console.log('error in creating payment');
+        }
+
     }
 
     return (
         <div className="bg-gray-100">
-            
+
             <Header />
 
             <main className="lg:flex max-w-screen-xl mx-auto">
@@ -71,7 +70,7 @@ function Checkout() {
                         <>
                             <h1 className="text-3xl border-b pb-3 font-medium">
                                 Price Details
-                        </h1>
+                            </h1>
                             <div className="whitespace-nowrap w-full flex flex-row justify-between pr-4 py-2">
                                 <h2 className="whitespace-nowrap">Price ({items.length} item): </h2>
                                 <h2 className="font-bold">
@@ -93,7 +92,7 @@ function Checkout() {
                             <div className="whitespace-nowrap border-b border-t text-xl pb-3 w-full flex flex-row justify-between pr-4 py-2">
                                 <h1 className="font-medium">Total Price: </h1>
                                 <h1 className="font-bold">
-                                    <Currency quantity={(total - discount + delivery)} currency="INR"  />
+                                    <Currency quantity={(total - discount + delivery)} currency="INR" />
                                 </h1>
                             </div>
 
