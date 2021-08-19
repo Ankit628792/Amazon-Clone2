@@ -16,7 +16,6 @@ function Checkout() {
     const discount = 0;
     const delivery = 149
 
-    console.log('inside checkout');
     const createCheckoutSession = async () => {
         const stripe = await loadStripe(process.env.stripe_public_key);
         try {

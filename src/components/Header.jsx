@@ -51,15 +51,15 @@ function Header() {
             </div>
 
             <div className="flex items-center space-x-3 p-2 pl-6 bg-amazon_blue-light text-white text-sm">
-                <p className="link flex items-center"><MenuIcon className="h-6 mr-1" /> All</p>
-                <p className="link">Prime Video</p>
-                <p className="link">Sports</p>
-                <p className="link">Kitchen</p>
-                <p className="link hidden lg:inline-flex">Electronics</p>
-                <p className="link hidden lg:inline-flex">Food & Grocery</p>
-                <p className="link hidden lg:inline-flex">Prime</p>
-                <p className="link hidden lg:inline-flex">Shopper Toolkit</p>
-                <p className="link hidden lg:inline-flex">Personal & Health Care</p>
+                <p onClick={() => router.push('/')} className="link flex items-center"><MenuIcon className="h-6 mr-1" /> All</p>
+                <p onClick={() => router.push('/')} className="link">Prime Video</p>
+                <p onClick={() => router.push('/')} className="link">Sports</p>
+                <p onClick={() => router.push('/')} className="link">Kitchen</p>
+                <p onClick={() => router.push('/')} className="link hidden lg:inline-flex">Electronics</p>
+                <p onClick={() => router.push('/')} className="link hidden lg:inline-flex">Food & Grocery</p>
+                <p onClick={() => router.push('/')} className="link hidden lg:inline-flex">Prime</p>
+                <p onClick={() => router.push('/')} className="link hidden lg:inline-flex">Shopper Toolkit</p>
+                <p onClick={() => router.push('/')} className="link hidden lg:inline-flex">Personal & Health Care</p>
             </div>
         </header>
     )
