@@ -15,3 +15,6 @@
         border-bottom: 2px solid #eee
     }
 }
+*::-webkit-scrollbar{
+    display: none;
+}

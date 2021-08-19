@@ -4,8 +4,11 @@ import Banner from '../components/Banner'
 import ProductFeed from '../components/ProductFeed'
 import Footer from '../components/Footer'
 import { getSession } from "next-auth/client";
+import { useRouter } from "next/router";
 
 export default function Home({ products }) {
+  const router = useRouter();
+  const {category} = router.query;
   return (
     <div className="bg-gray-100 overflow-x-hidden">
 
@@ -18,7 +21,7 @@ export default function Home({ products }) {
       <main className="max-w-screen-2xl mx-auto">
         <Banner />
 
-        <ProductFeed products={products} />
+        <ProductFeed products={products} type={category} />
       </main>
 
       <Footer />
