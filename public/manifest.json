@@ -3,25 +3,25 @@
     "name": "Amazon 2.0",
     "icons": [
       {
-        "src": "favicon.png",
+        "src": "/favicon.png",
         "type": "image/png",
         "sizes": "64x64 32x32 24x24 16x16",
         "purpose": "maskable"
       },
       {
-        "src": "favicon.png",
+        "src": "/favicon.png",
         "type": "image/png",
         "sizes": "144x144",
         "purpose": "any"
       },
       {
-        "src": "favicon.png",
+        "src": "/favicon.png",
         "type": "image/png",
         "sizes": "192x192",
         "purpose": "maskable"
       },
       {
-        "src": "favicon.png",
+        "src": "/favicon.png",
         "type": "image/png",
         "sizes": "512x512",
         "purpose": "maskable"
@@ -29,7 +29,7 @@
     ],
     "start_url": "/",
     "display": "standalone",
-    "theme_color": "#fafafa",
-    "background_color": "#f22952",
+    "theme_color": "#000000",
+    "background_color": "#ffffff",
     "orientation": "portrait"
   }
