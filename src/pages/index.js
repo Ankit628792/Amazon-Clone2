@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Header from '../components/Header'
 import Banner from '../components/Banner'
 import ProductFeed from '../components/ProductFeed'
@@ -11,10 +10,6 @@ export default function Home({ products }) {
   const {category} = router.query;
   return (
     <div className="bg-gray-100 overflow-x-hidden">
-
-      <Head>
-        <title>Amazon 2.0</title>
-      </Head>
 
       <Header />
 
