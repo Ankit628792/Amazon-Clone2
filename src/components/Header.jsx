@@ -33,6 +33,7 @@ function Header() {
                         height={40}
                         objectFit="contain"
                         className="cursor-pointer"
+                        alt=''
                     />
                 </div>
 
@@ -44,7 +45,7 @@ function Header() {
                 </div>
 
                 <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
-                    <div onClick={!session ? signIn : signOut} className="link">
+                    <div onClick={() => !session ? signIn('google') : signOut()} className="link">
                         <p className="capitalize">
                             {session ? `Hello, ${session.user.name}` : "Sign In"}
                         </p>
